@@ -5,33 +5,40 @@ public class Account {
     public double getAmount() {
         return amount;
     }
-
     public Account(double a) {
-        amount = a;
+        this.amount = a;
     }
 
-    public void registerDeposit(double value) {
+    public boolean registerDeposit(double value) {
         if(value <= 0) {
             System.out.println("Incorrect value");
+            return false;
         } else {
             amount += value;
+            System.out.println("Deposit R$ " + value + " made successfully.");
+            System.out.println("Current balance: R$ " + amount);
+            return true;
         }
-        System.out.println("Amount: R$ " + amount );
     }
     
-    public void registerWithdraw(double value) {
-        double fees = value * 0.05;
+    public boolean registerWithdraw(double value) {
+        double fees = value * 0.005;
+        double totalDebit = value + fees;
+
         if(value > amount) {
             System.out.println("Insufficient Funds");
+            return false;
         } else if(value <= 0) {
             System.out.println("Incorrect value");
+            return false;
         } else {
-            amount -= value;
-            amount -= fees;
+            amount -= totalDebit;
+            System.out.println("Withdraw: R$ " + value + " made with fees of R$ " + fees);
+            System.out.println("Remaining balance: R$ " + amount);
+            return true;
         }
-        System.out.println("Withdraw: R$ " + value);
-        System.out.println("Fees: R$ " + fees);
-        System.out.println("Amount: R$ " + amount );
+        
         
     }
+
 }
