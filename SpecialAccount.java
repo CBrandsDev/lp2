@@ -19,6 +19,5 @@ public class SpecialAccount extends Account {
             System.out.println("Remaining balance: R$ " + amount);
             return true;
         }
-        
     }
 }
