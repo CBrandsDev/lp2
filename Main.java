@@ -12,5 +12,7 @@ public class Main {
         c.registerWithdraw(500);
         s.registerDeposit(200);
         s.specialWithdraw(500);
+
+        //question 6
     }
 }
