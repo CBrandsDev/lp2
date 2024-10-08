@@ -10,24 +10,35 @@ public class CadernetaPoupancaUtil {
         
 
         for (int i = 0; i < cadernetas.length; i++) {
-            String nome;
-            String cpf;
-            double deposito;
-            System.out.println("Informe os dados da " + (i + 1) + "ª caderneta");
-            System.out.println("Nome do titular: ");
-            nome = sc.nextLine();
-            System.out.print("Cpf: ");
-            cpf = sc.nextLine();
-            System.out.print("Valor do depósito inicial: ");
-            deposito = sc.nextDouble();
-            sc.nextLine();
-            cadernetas[i] = new CadernetaPoupanca(nome, cpf, deposito);
-            Cp.limparTela();
+            boolean cadernetaCriada = false;
+            while(!cadernetaCriada) {
+                try {
+                    String nome;
+                    String cpf;
+                    double deposito;
+                    System.out.println("Informe os dados da " + (i + 1) + "ª caderneta");
+                    System.out.println("Nome do titular: ");
+                    nome = sc.nextLine();
+                    System.out.print("Cpf: ");
+                    cpf = sc.nextLine();
+                    System.out.print("Valor do depósito inicial: ");
+                    deposito = sc.nextDouble();
+                    sc.nextLine();
+                    cadernetas[i] = new CadernetaPoupanca(nome, cpf, deposito);
+                    Cp.limparTela();
+                    cadernetaCriada = true;
+                } catch(Exception e) {
+                    System.out.println("Erro: " + e.getMessage());
+                    System.out.println("Tente novamente.");
+                    sc.nextLine();
+                }
+            }
         }
 
         
         boolean continuar = true;
         int opcao = Cp.getOpcao();
+
         while(continuar == true) {
                 if(opcao == 1) {
                     System.out.print("Informe o nome do titular: ");
@@ -35,28 +46,40 @@ public class CadernetaPoupancaUtil {
                     CadernetaPoupanca cadernetaEncontrada = encontrarCadernetaPorNome(cadernetas, nomeTitular);
                     if (cadernetaEncontrada != null) {
                         System.out.println("Saldo antes da atualização: R$ " + cadernetaEncontrada.getSaldo());
-                        System.out.print("Informe a taxa de rendimento (%): ");
-                        double prTaxa = sc.nextDouble();
-                        double rendimento = cadernetaEncontrada.atualizarRendimento(prTaxa);
-                        Cp.limparTela();
-                        System.out.println("Saldo adicionado após a atualização: R$ " + rendimento);
-                        System.out.println("Saldo total: R$ " + cadernetaEncontrada.getSaldo());
-                        System.out.println("1- Deseja atualizar o rendimento novamente?");
-                        System.out.println("2- Voltar pro menu inicial");
-                        System.out.println("0- Sair");
-                        int opcao2 = sc.nextInt();
-                        if(opcao2 == 0) {
-                          continuar = false;
-                        } else if (opcao2 == 2) {
-                            opcao = 9;
+                        boolean taxaValida = false;
+                        while(!taxaValida) {
+                            try {
+                                System.out.print("Informe a taxa de rendimento (%): ");
+                                double prTaxa = sc.nextDouble();
+                                sc.nextLine();  
+                                double rendimento = cadernetaEncontrada.atualizarRendimento(prTaxa);
+                                Cp.limparTela();
+                                System.out.println("Saldo adicionado após a atualização: R$ " + rendimento);
+                                System.out.println("Saldo total: R$ " + cadernetaEncontrada.getSaldo());
+                                taxaValida = true;
+                            } catch (Exception e) {
+                                System.out.println("Erro: " + e.getMessage());
+                                System.out.println("Tente novamente.");
+                                sc.nextLine();
+                            }
                         }
-                    } else {
-                        System.out.println("Titular não encontrado.");
-                    }  
-                } 
+                            System.out.println("1- Deseja atualizar o rendimento novamente?");
+                            System.out.println("2- Voltar pro menu inicial");
+                            System.out.println("0- Sair");
+                            int opcao2 = sc.nextInt();
+                            if(opcao2 == 0) {
+                                continuar = false;
+                            } else if (opcao2 == 2) {
+                                opcao = 9;
+                            }   
+        
+                        } else {
+                            System.out.println("Titular não encontrado.");
+                        }
+                }
                     
                 else if(opcao == 2) {
-                    System.out.print("Informe o nome do titular: ");
+                    System.out.print("Informe o nome cadastrado do titular: ");
                     String nomeTitular = sc.nextLine();
                     CadernetaPoupanca cadernetaEncontrada = encontrarCadernetaPorNome(cadernetas, nomeTitular);
                     if(cadernetaEncontrada != null) {
@@ -72,8 +95,9 @@ public class CadernetaPoupancaUtil {
                             opcao = 9;
                         }
                     }
-                }else if(opcao == 3){
-                    System.out.print("Informe o cpf do titular: ");
+                } 
+                else if(opcao == 3){
+                    System.out.print("Informe o cpf cadastrado do titular: ");
                     String cpfTitular = sc.nextLine();
                     CadernetaPoupanca cadernetaEncontrada = encontrarPorCpf(cadernetas, cpfTitular);
                     if(cadernetaEncontrada != null) {
@@ -89,12 +113,17 @@ public class CadernetaPoupancaUtil {
                             opcao = 9;
                         }
                     }
-                } else if(opcao == 4) {
+                } 
+                else if(opcao == 4) {
                     continuar = false;
-                } else if (opcao <= 9 && opcao >= 5) {
+                } 
+                else if (opcao <= 9 && opcao >= 5) {
                     opcao = Cp.getOpcao();
+                } else {
+                    break;
                 }
-            }       
+            }
+                
         }
         public static CadernetaPoupanca encontrarPorCpf(CadernetaPoupanca[] cadernetas, String cpf) {
             for (CadernetaPoupanca caderneta : cadernetas) {
@@ -113,6 +142,5 @@ public class CadernetaPoupancaUtil {
                 }
             }
             return null;  
-        }
-   
+        }  
 }

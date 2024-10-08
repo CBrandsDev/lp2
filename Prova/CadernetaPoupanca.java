@@ -1,19 +1,22 @@
 import java.util.Scanner;
+import java.util.random.*;;
 
-class CadernetaPoupanca {
+class CadernetaPoupanca extends Thread {
     private String titular;
     private String cpf;
     private double depositoInicial;
     private double rendimentoAcumulado;
+    private boolean executando;
     
     public CadernetaPoupanca(String titular, String cpf, double DInicial) {
         this.titular = titular;
         this.cpf = cpf;
         depositoInicial = DInicial;
         this.rendimentoAcumulado = 0;
+        this.executando = true;
     }
     public CadernetaPoupanca() {
-        return;
+        this.executando = false;
     }
 
     public String getTitular() {
@@ -31,18 +34,22 @@ class CadernetaPoupanca {
     public double getRendimento() {
         return rendimentoAcumulado;
     }
+    public double getSaldo() {
+        return depositoInicial + rendimentoAcumulado;
+    }
+    public void pararExecução() {
+        this.executando = false;
+    }
 
-    public double atualizarRendimento(double prTaxa) {
+    public double atualizarRendimento(double prTaxa) throws Exception {
+        if (prTaxa <= 0) {
+            throw new Exception("A taxa de rendimento deve ser maior que 0");
+        }
         double saldoAtual = getSaldo();
         double rendimentoMensal = saldoAtual * (prTaxa / 100);
         rendimentoAcumulado += rendimentoMensal;
         return rendimentoAcumulado;
     }
-
-    public double getSaldo() {
-        return depositoInicial + rendimentoAcumulado;
-    }
-
     public double getTaxaMensal() {
         if(depositoInicial == 0) {
             return 0;
@@ -91,7 +98,44 @@ class CadernetaPoupanca {
     }
 
 
-    
-    
+    @Override
+    public void run() {
+        java.util.Random gerador = new java.util.Random();
+        while (executando) {
+            
+            double taxaAleatoria = gerador.nextDouble(0.5, 1.0);
 
+            try {
+                atualizarRendimento(taxaAleatoria);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            // synchronized (System.out) {
+            //     System.out.println("");
+            //     System.out.println("===========================================");
+            //     System.out.println("Atualizando rendimento de " + titular + ":");
+            //     System.out.printf("Taxa aplicada: %.4f%%\n", taxaAleatoria);
+            //     System.out.printf("Saldo atual: R$ %.2f\n", getSaldo());
+            //     System.out.println("===========================================");
+            //     System.out.println("");
+            // }
+
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        // synchronized (System.out) {
+        //     System.out.println("");
+        //         System.out.println("===========================================");
+        //         System.out.println("Redimento de: " + titular + ":");
+        //         System.out.println("Deposito inicial: " +getDeposito());
+        //         System.out.printf("Taxa acumulada: %.4f%%\n", +getTaxaMensal());
+        //         System.out.printf("Saldo total: R$ %.2f\n", getSaldo());
+        //         System.out.println("===========================================");
+        //         System.out.println("");
+        // }
+    }
 }
