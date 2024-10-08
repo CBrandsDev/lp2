@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.random.*;;
 
 class CadernetaPoupanca extends Thread {
     private String titular;
@@ -111,31 +110,12 @@ class CadernetaPoupanca extends Thread {
                 e.printStackTrace();
             }
 
-            // synchronized (System.out) {
-            //     System.out.println("");
-            //     System.out.println("===========================================");
-            //     System.out.println("Atualizando rendimento de " + titular + ":");
-            //     System.out.printf("Taxa aplicada: %.4f%%\n", taxaAleatoria);
-            //     System.out.printf("Saldo atual: R$ %.2f\n", getSaldo());
-            //     System.out.println("===========================================");
-            //     System.out.println("");
-            // }
-
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        // synchronized (System.out) {
-        //     System.out.println("");
-        //         System.out.println("===========================================");
-        //         System.out.println("Redimento de: " + titular + ":");
-        //         System.out.println("Deposito inicial: " +getDeposito());
-        //         System.out.printf("Taxa acumulada: %.4f%%\n", +getTaxaMensal());
-        //         System.out.printf("Saldo total: R$ %.2f\n", getSaldo());
-        //         System.out.println("===========================================");
-        //         System.out.println("");
-        // }
+
     }
 }
