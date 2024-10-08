@@ -2,15 +2,13 @@ import java.util.Scanner;
 
 class CadernetaPoupanca {
     private String titular;
-    private String diaAniversario;
+    private String cpf;
     private double depositoInicial;
     private double rendimentoAcumulado;
     
-    
-
-    public CadernetaPoupanca(String titular, String DAniversario, double DInicial) {
+    public CadernetaPoupanca(String titular, String cpf, double DInicial) {
         this.titular = titular;
-        DAniversario = diaAniversario;
+        this.cpf = cpf;
         depositoInicial = DInicial;
         this.rendimentoAcumulado = 0;
     }
@@ -22,8 +20,8 @@ class CadernetaPoupanca {
         return titular;
     }
 
-    public String getDia() {
-        return diaAniversario;
+    public String getCpf() {
+        return cpf;
     }
 
     public double getDeposito() {
@@ -54,14 +52,14 @@ class CadernetaPoupanca {
     }
 
     public void acessar() {
+        limparTela();
         System.out.println("__________________________________________");
         System.out.println("|"+getTitular());
-        System.out.println("|Dia do aniversario: "+getDia());
+        System.out.println("|Cpf: "+getCpf());
         System.out.println("|Deposito Inicial: R$ "+getDeposito());
         System.out.println("|Saldo: R$ "+getSaldo());
         System.out.println("|Taxa acumulada: "+getTaxaMensal());
-        
-        
+        System.out.println("__________________________________________");
     }
     public void limparTela() {
         System.out.println("");
@@ -81,13 +79,13 @@ class CadernetaPoupanca {
             System.out.println("|Bem vindo                        |");
             System.out.println("|                                 |");
             System.out.println("|1 - Atualizar rendimento         |");
-            System.out.println("|                                 |");
-            System.out.println("|*Listar caderneta por:           |");
-            System.out.println("|2 - Nome                         |");
-            System.out.println("|3 - Nascimento                   |");
+            System.out.println("|Listar caderneta por:            |");
+            System.out.println("|   2 - Nome                      |");
+            System.out.println("|   3 - Cpf                       |");
             System.out.println("|4 - Sair                         |");
             System.out.println("|                                 |");
             System.out.println("|Selecione uma opção:             |");
+            System.out.println("|_________________________________|");
             int opcao    = sc.nextInt();
             return opcao;
     }
