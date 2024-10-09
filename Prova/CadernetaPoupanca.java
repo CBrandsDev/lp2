@@ -71,8 +71,8 @@ class CadernetaPoupanca extends Thread {
             System.out.println("|Aniversario: "+getAniversario());
             System.out.println("|Deposito Inicial: R$ "+getDeposito());
             System.out.printf("|Taxa acumulada: %.4f%%\n", +getTaxaMensal());
-            System.out.printf("|Saldo total: R$ \n "+getSaldo());
-            System.out.println("__________________________________________");            
+            System.out.println("|Saldo total: R$ " + getSaldo());
+            System.out.println("==========================================");            
         } catch (Exception e) {
             System.out.println("Erro: " + e.getMessage());
             System.out.println("Tente novamente.");
