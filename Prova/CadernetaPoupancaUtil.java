@@ -28,7 +28,7 @@ public class CadernetaPoupancaUtil {
                     sc.nextLine();
                     cadernetas[i] = new CadernetaPoupanca(nome, aniversario, deposito);
                     Cp.limparTela();
-                    cadernetas[i].start();
+                    // cadernetas[i].start();
                     cadernetaCriada = true;
                 } catch(Exception e) {
                     System.out.println("Erro: " + e.getMessage());
