@@ -1,15 +1,16 @@
 import java.util.Scanner;
 
 public class ThreadCaderneta {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
 
         
         System.out.print("Informe o nome do titular: ");
         String nomeTitular = sc.nextLine();
 
-        System.out.print("Informe o CPF do titular: ");
-        String cpfTitular = sc.nextLine();
+        System.out.print("Informe o aniversario do titular: ");
+        int niverTitular = sc.nextInt();
+        sc.nextLine();
 
         CadernetaPoupanca[] cadernetas = new CadernetaPoupanca[3];
         for (int i = 0; i < cadernetas.length; i++) {
@@ -17,7 +18,7 @@ public class ThreadCaderneta {
             double depositoInicial = sc.nextDouble();
             sc.nextLine();
 
-            cadernetas[i] = new CadernetaPoupanca(nomeTitular, cpfTitular, depositoInicial);
+            cadernetas[i] = new CadernetaPoupanca(nomeTitular, niverTitular, depositoInicial);
             cadernetas[i].start();
         }
 

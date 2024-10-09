@@ -63,15 +63,21 @@ class CadernetaPoupanca extends Thread {
     
     }
 
-    public void acessar() {
-        limparTela();
-        System.out.println("__________________________________________");
-        System.out.println("|"+getTitular());
-        System.out.println("|Aniversario: "+getAniversario());
-        System.out.println("|Deposito Inicial: R$ "+getDeposito());
-        System.out.println("|Saldo: R$ "+getSaldo());
-        System.out.println("|Taxa acumulada: "+getTaxaMensal());
-        System.out.println("__________________________________________");
+    public void acessar() throws Exception {
+        try {
+            limparTela();
+            System.out.println("__________________________________________");
+            System.out.println("|"+getTitular());
+            System.out.println("|Aniversario: "+getAniversario());
+            System.out.println("|Deposito Inicial: R$ "+getDeposito());
+            System.out.printf("|Taxa acumulada: %.4f%%\n", +getTaxaMensal());
+            System.out.printf("|Saldo total: R$ \n "+getSaldo());
+            System.out.println("__________________________________________");            
+        } catch (Exception e) {
+            System.out.println("Erro: " + e.getMessage());
+            System.out.println("Tente novamente.");
+        }
+
     }
     public void limparTela() {
         System.out.println("");
@@ -101,7 +107,7 @@ class CadernetaPoupanca extends Thread {
             System.out.println("|1 - Atualizar rendimento         |");
             System.out.println("|Listar caderneta por:            |");
             System.out.println("|   2 - Nome                      |");
-            System.out.println("|   3 - Cpf                       |");
+            System.out.println("|   3 - Aniversario               |");
             System.out.println("|4 - Sair                         |");
             System.out.println("|                                 |");
             System.out.println("|Selecione uma opção:             |");

@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class CadernetaPoupancaUtil {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
 
         CadernetaPoupanca[] cadernetas = new CadernetaPoupanca[2];
@@ -20,10 +20,10 @@ public class CadernetaPoupancaUtil {
                     System.out.println("Informe os dados da " + (i + 1) + "ª caderneta");
                     System.out.println("Nome do titular: ");
                     nome = sc.nextLine();
-                    System.out.print("Aniversario: ");
+                    System.out.print("Aniversario: \n");
                     aniversario = sc.nextInt();
                     sc.nextLine();
-                    System.out.print("Valor do depósito inicial: ");
+                    System.out.print("Valor do depósito inicial: \n");
                     deposito = sc.nextDouble();
                     sc.nextLine();
                     cadernetas[i] = new CadernetaPoupanca(nome, aniversario, deposito);
