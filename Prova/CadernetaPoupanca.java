@@ -2,15 +2,21 @@ import java.util.Scanner;
 
 class CadernetaPoupanca extends Thread {
     private String titular;
-    private String cpf;
+    private int aniversario;
     private double depositoInicial;
     private double rendimentoAcumulado;
     private boolean executando;
     
-    public CadernetaPoupanca(String titular, String cpf, double DInicial) {
+    public CadernetaPoupanca(String titular, int aniversario, double DInicial) throws Exception{
         this.titular = titular;
-        this.cpf = cpf;
+        this.aniversario = aniversario;
+        if(aniversario < 1 || aniversario > 30) {
+            throw new Exception("Insira uma data valida: (1 - 31)");
+        }
         depositoInicial = DInicial;
+        if(depositoInicial <= 0) {
+            throw new Exception("Insira uma quantia valida para depositar");
+        }
         this.rendimentoAcumulado = 0;
         this.executando = true;
     }
@@ -22,8 +28,8 @@ class CadernetaPoupanca extends Thread {
         return titular;
     }
 
-    public String getCpf() {
-        return cpf;
+    public int getAniversario() {
+        return aniversario;
     }
 
     public double getDeposito() {
@@ -61,13 +67,21 @@ class CadernetaPoupanca extends Thread {
         limparTela();
         System.out.println("__________________________________________");
         System.out.println("|"+getTitular());
-        System.out.println("|Cpf: "+getCpf());
+        System.out.println("|Aniversario: "+getAniversario());
         System.out.println("|Deposito Inicial: R$ "+getDeposito());
         System.out.println("|Saldo: R$ "+getSaldo());
         System.out.println("|Taxa acumulada: "+getTaxaMensal());
         System.out.println("__________________________________________");
     }
     public void limparTela() {
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
+        System.out.println("");
         System.out.println("");
         System.out.println("");
         System.out.println("");
