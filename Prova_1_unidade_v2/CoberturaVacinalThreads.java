@@ -1,4 +1,4 @@
-package Prova2;
+package Prova_1_unidade_v2;
 import java.util.Scanner;
 
 public class CoberturaVacinalThreads {
