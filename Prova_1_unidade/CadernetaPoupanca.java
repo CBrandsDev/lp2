@@ -7,7 +7,6 @@ class CadernetaPoupanca extends Thread {
     private double rendimentoAcumulado;
     private boolean executando;
     
-<<<<<<< HEAD:Prova/CadernetaPoupanca.java
     public CadernetaPoupanca(String titular, int aniversario, double DInicial) throws Exception {
         this.titular = titular;
         this.aniversario = aniversario;
@@ -17,17 +16,6 @@ class CadernetaPoupanca extends Thread {
         depositoInicial = DInicial;
         if (depositoInicial <= 0) {
             throw new Exception("Insira uma quantia valida para o deposito");
-=======
-    public CadernetaPoupanca(String titular, int aniversario, double DInicial) throws Exception{
-        this.titular = titular;
-        this.aniversario = aniversario;
-        if(aniversario < 1 || aniversario > 30) {
-            throw new Exception("Insira uma data valida: (1 - 31)");
-        }
-        depositoInicial = DInicial;
-        if(depositoInicial <= 0) {
-            throw new Exception("Insira uma quantia valida para depositar");
->>>>>>> a4ad281128941c6df0c8bf323997ef23f170804e:Prova_1_unidade/CadernetaPoupanca.java
         }
         this.rendimentoAcumulado = 0;
         this.executando = true;
@@ -75,7 +63,6 @@ class CadernetaPoupanca extends Thread {
     
     }
 
-<<<<<<< HEAD:Prova/CadernetaPoupanca.java
     public void acessar() {
         limparTela();
         System.out.println("__________________________________________");
@@ -85,23 +72,6 @@ class CadernetaPoupanca extends Thread {
         System.out.println("|Saldo: R$ "+getSaldo());
         System.out.println("|Taxa acumulada: "+getTaxaMensal());
         System.out.println("__________________________________________");
-=======
-    public void acessar() throws Exception {
-        try {
-            limparTela();
-            System.out.println("__________________________________________");
-            System.out.println("|"+getTitular());
-            System.out.println("|Aniversario: "+getAniversario());
-            System.out.println("|Deposito Inicial: R$ "+getDeposito());
-            System.out.printf("|Taxa acumulada: %.4f%%\n", +getTaxaMensal());
-            System.out.println("|Saldo total: R$ " + getSaldo());
-            System.out.println("==========================================");            
-        } catch (Exception e) {
-            System.out.println("Erro: " + e.getMessage());
-            System.out.println("Tente novamente.");
-        }
-
->>>>>>> a4ad281128941c6df0c8bf323997ef23f170804e:Prova_1_unidade/CadernetaPoupanca.java
     }
     public void limparTela() {
         System.out.println("");
@@ -127,20 +97,12 @@ class CadernetaPoupanca extends Thread {
             System.out.println("___________________________________");
             System.out.println("|Bem vindo ao Monkeys Bank        |");
             System.out.println("|                                 |");
-<<<<<<< HEAD:Prova/CadernetaPoupanca.java
             System.out.println("|1 - Cadastrar caderneta          |");
             System.out.println("|2 - Atualizar Rendimento         |");
             System.out.println("|Procurar caderneta por:          |");
             System.out.println("|   3 - Nome                      |");
             System.out.println("|   4 - Aniversario               |");
             System.out.println("|5 - Sair                         |");
-=======
-            System.out.println("|1 - Atualizar rendimento         |");
-            System.out.println("|Listar caderneta por:            |");
-            System.out.println("|   2 - Nome                      |");
-            System.out.println("|   3 - Aniversario               |");
-            System.out.println("|4 - Sair                         |");
->>>>>>> a4ad281128941c6df0c8bf323997ef23f170804e:Prova_1_unidade/CadernetaPoupanca.java
             System.out.println("|                                 |");
             System.out.println("|                                 |");
             System.out.println("|Selecione uma opção:_____________|");
