@@ -19,6 +19,7 @@ public class CadernetaPoupancaUtil {
                     String nome;
                     int aniversario;
                     double deposito;
+<<<<<<< HEAD:Prova/CadernetaPoupancaUtil.java
                     System.out.println("Informe os dados da 7ª caderneta");
                     System.out.println("Nome do titular: ");
                     nome = sc.nextLine();
@@ -29,6 +30,22 @@ public class CadernetaPoupancaUtil {
                     sc.nextLine();
                     cadernetas[0] = new CadernetaPoupanca(nome, aniversario, deposito);
                     Cp.limparTela();
+=======
+                    Cp.limparTela();
+                    System.out.println("Informe os dados da " + (i + 1) + "ª caderneta");
+                    System.out.println("Nome do titular: ");
+                    nome = sc.nextLine();
+                    System.out.print("Aniversario: \n");
+                    aniversario = sc.nextInt();
+                    sc.nextLine();
+                    System.out.print("Valor do depósito inicial: \n");
+                    deposito = sc.nextDouble();
+                    sc.nextLine();
+                    cadernetas[i] = new CadernetaPoupanca(nome, aniversario, deposito);
+                    Cp.limparTela();
+                    // cadernetas[i].start();
+                    cadernetaCriada = true;
+>>>>>>> a4ad281128941c6df0c8bf323997ef23f170804e:Prova_1_unidade/CadernetaPoupancaUtil.java
                 } catch(Exception e) {
                     System.out.println("Erro: " + e.getMessage());
                     System.out.println("Tente novamente.");
@@ -95,6 +112,7 @@ public class CadernetaPoupancaUtil {
                                 System.out.println("Tente novamente.");
                                 sc.nextLine();
                             }
+<<<<<<< HEAD:Prova/CadernetaPoupancaUtil.java
                         break;    
                         case(3):
                             Cp.limparTela();
@@ -141,6 +159,47 @@ public class CadernetaPoupancaUtil {
                         case(5):
                             Cp.limparTela();
                             System.out.println("Ate mais!!");    
+=======
+                        }
+                            System.out.println("1- Deseja atualizar o rendimento novamente?");
+                            System.out.println("2- Voltar pro menu inicial");
+                            System.out.println("0- Sair");
+                            int opcao2 = sc.nextInt();
+                            sc.nextLine();
+                            if(opcao2 == 0) {
+                                for(int i = 0; i < cadernetas.length; i++) {
+                                    cadernetas[i].pararExecução();
+                                }
+                                Cp.limparTela();
+                                System.out.println("Programa finalizado");
+                                continuar = false;
+                            } else if (opcao2 == 2) {
+                                opcao = 9;
+                            }   
+        
+                        } else {
+                            System.out.println("Titular não encontrado.");
+                        }
+                }
+                    
+                else if(opcao == 2) {
+                    System.out.print("Informe o nome cadastrado do titular: ");
+                    String nomeTitular = sc.nextLine();
+                    CadernetaPoupanca cadernetaEncontrada = encontrarCadernetaPorNome(cadernetas, nomeTitular);
+                    if(cadernetaEncontrada != null) {
+                        cadernetaEncontrada.acessar();
+                        System.out.println("|1 - Voltar para o menu");
+                        System.out.println("|0 - Sair");
+                        int opcao3 = sc.nextInt();
+                        if (opcao3 == 1)  {
+                            opcao = 9;
+                        } else if (opcao3 == 0) {
+                            for(int i = 0; i < cadernetas.length; i++) {
+                                cadernetas[i].pararExecução();
+                            }
+                            Cp.limparTela();
+                            System.out.println("Programa finalizado");
+>>>>>>> a4ad281128941c6df0c8bf323997ef23f170804e:Prova_1_unidade/CadernetaPoupancaUtil.java
                             continuar = false;
                             break;
                         default:
@@ -148,11 +207,63 @@ public class CadernetaPoupancaUtil {
                             Cp.menu();
                             break;
                 } 
+<<<<<<< HEAD:Prova/CadernetaPoupancaUtil.java
                 
             }
                 
         }
         
+=======
+                else if(opcao == 3){
+                    System.out.print("Informe o aniversario cadastrado do titular: ");
+                    int niverTitular = sc.nextInt();
+                    CadernetaPoupanca cadernetaEncontrada = encontrarPorNiver(cadernetas, niverTitular);
+                    if(cadernetaEncontrada != null) {
+                        cadernetaEncontrada.acessar();
+                        System.out.println("|1 - Voltar para o menu");
+                        System.out.println("|0 - Sair");
+                        int opcao3 = sc.nextInt();
+                        if (opcao3 == 1)  {
+                            opcao = 9;
+                        } else if (opcao3 == 0) {
+                            for(int i = 0; i < cadernetas.length; i++) {
+                                cadernetas[i].pararExecução();
+                            }
+                            Cp.limparTela();
+                            System.out.println("Programa finalizado");
+                            continuar = false;
+                        } else {
+                            opcao = 9;
+                        }
+                    }
+                } 
+                else if(opcao == 4) {
+                    for(int i = 0; i < cadernetas.length; i++) {
+                        cadernetas[i].pararExecução();
+                    }
+                    Cp.limparTela();
+                    System.out.println("Programa finalizado");
+                    continuar = false;
+                } 
+                else if (opcao <= 9 && opcao >= 5) {
+                    opcao = Cp.getOpcao();
+                } else {
+                    break;
+                }
+            }
+                
+        }
+        public static CadernetaPoupanca encontrarPorNiver(CadernetaPoupanca[] cadernetas, int aniversario) {
+            for (CadernetaPoupanca caderneta : cadernetas) {
+                if (caderneta.getAniversario() == aniversario) {
+                return caderneta;
+                } else {
+                    System.out.println("Nenhuma caderneta encontrada");
+                }
+            }
+            return null;
+        }
+>>>>>>> a4ad281128941c6df0c8bf323997ef23f170804e:Prova_1_unidade/CadernetaPoupancaUtil.java
         public static CadernetaPoupanca encontrarCadernetaPorNome(CadernetaPoupanca[] cadernetas, String nomeTitular) {
             for (CadernetaPoupanca caderneta : cadernetas) {
                 if (caderneta.getTitular().equalsIgnoreCase(nomeTitular)) {
