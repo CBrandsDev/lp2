@@ -2,15 +2,21 @@ import java.util.Scanner;
 
 class CadernetaPoupanca extends Thread {
     private String titular;
-    private String cpf;
+    private int aniversario;
     private double depositoInicial;
     private double rendimentoAcumulado;
     private boolean executando;
     
-    public CadernetaPoupanca(String titular, String cpf, double DInicial) {
+    public CadernetaPoupanca(String titular, int aniversario, double DInicial) throws Exception {
         this.titular = titular;
-        this.cpf = cpf;
+        this.aniversario = aniversario;
+        if (aniversario < 1 || aniversario > 31) {
+            throw new Exception("Deve inserir um dia valido (1 - 31)");
+        }
         depositoInicial = DInicial;
+        if (depositoInicial <= 0) {
+            throw new Exception("Insira uma quantia valida para o deposito");
+        }
         this.rendimentoAcumulado = 0;
         this.executando = true;
     }
@@ -22,8 +28,8 @@ class CadernetaPoupanca extends Thread {
         return titular;
     }
 
-    public String getCpf() {
-        return cpf;
+    public int getAniversario() {
+        return aniversario;
     }
 
     public double getDeposito() {
@@ -61,7 +67,7 @@ class CadernetaPoupanca extends Thread {
         limparTela();
         System.out.println("__________________________________________");
         System.out.println("|"+getTitular());
-        System.out.println("|Cpf: "+getCpf());
+        System.out.println("|Aniversario: "+getAniversario());
         System.out.println("|Deposito Inicial: R$ "+getDeposito());
         System.out.println("|Saldo: R$ "+getSaldo());
         System.out.println("|Taxa acumulada: "+getTaxaMensal());
@@ -78,22 +84,20 @@ class CadernetaPoupanca extends Thread {
         System.out.println("");
     }
 
-    public int getOpcao(){
-            Scanner sc = new Scanner(System.in);
+    public void menu(){
             limparTela();
             System.out.println("___________________________________");
-            System.out.println("|Bem vindo                        |");
+            System.out.println("|Bem vindo ao Monkeys Bank        |");
             System.out.println("|                                 |");
-            System.out.println("|1 - Atualizar rendimento         |");
-            System.out.println("|Listar caderneta por:            |");
-            System.out.println("|   2 - Nome                      |");
-            System.out.println("|   3 - Cpf                       |");
-            System.out.println("|4 - Sair                         |");
+            System.out.println("|1 - Cadastrar caderneta          |");
+            System.out.println("|2 - Atualizar Rendimento         |");
+            System.out.println("|Procurar caderneta por:          |");
+            System.out.println("|   3 - Nome                      |");
+            System.out.println("|   4 - Aniversario               |");
+            System.out.println("|5 - Sair                         |");
             System.out.println("|                                 |");
-            System.out.println("|Selecione uma opção:             |");
-            System.out.println("|_________________________________|");
-            int opcao    = sc.nextInt();
-            return opcao;
+            System.out.println("|                                 |");
+            System.out.println("|Selecione uma opção:_____________|");
     }
 
 
