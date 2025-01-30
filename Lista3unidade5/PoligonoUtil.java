@@ -1,8 +1,8 @@
-package Lista3unidade;
+package Lista3unidade5;
 
 import java.util.*;
 
-import Lista3unidade.Poligono;
+import Lista3unidade5.Poligono;
 
 public class PoligonoUtil {
     public static void main(String[] args) {
