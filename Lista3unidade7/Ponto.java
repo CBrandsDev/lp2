@@ -19,7 +19,7 @@ public class Ponto {
 
     @Override
     public String toString() {
-        return "P (" + x + "," + y + ")";
+        return "(" + x + "," + y + ")";
     }
 
     public int getQuadrante() {

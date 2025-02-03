@@ -37,7 +37,7 @@ public class PoligonoUtil {
         
         Scanner sc = new Scanner(System.in);
         boolean exec = true;
-        while(exec == true) {
+        while(exec) {
             clean();
             menu();
             int encerrar = 0;
