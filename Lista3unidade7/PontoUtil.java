@@ -169,7 +169,24 @@ public class PontoUtil {
             }
                break;
             case 5:
+            clean();
+            System.out.println("Lista de pontos disponíveis:");
+            for (int i = 0; i < pontos.length; i++) {
+                System.out.println(i + ": " + pontos[i]);
+            }
+            System.out.print("\nDigite o índice do primeiro ponto: ");
+            int indice1 = sc.nextInt();
+            System.out.print("\nDigite o índice do segundo ponto: ");
+            int indice2 = sc.nextInt();
+            listarDistancia(pontos, indice1, indice2);
+            System.out.println("Deseja encerrar a aplicação? (1 - Sim / 2 - Não)");
+            encerrar = sc.nextInt();
 
+            if (encerrar == 1) {
+                 clean();
+                 System.out.println("A aplicação foi encerrada com sucesso!");
+                 exec = false;
+             }
                break;
             case 6:
                clean();
@@ -204,4 +221,14 @@ public class PontoUtil {
          System.out.println("");
       }
    }
+   public static void listarDistancia(Ponto[] pontos, int indice1, int indice2) {
+      if (indice1 < 0 || indice1 >= pontos.length || indice2 < 0 || indice2 >= pontos.length) {
+          System.out.println("Índices inválidos! Selecione valores entre 0 e " + (pontos.length - 1));
+          return;
+      }
+      Ponto p1 = pontos[indice1];
+      Ponto p2 = pontos[indice2];
+      double distancia = p1.getDistancia(p2);
+      System.out.println("Distância entre " + p1 + " e " + p2 + " é: " + distancia);
+  }
 }
